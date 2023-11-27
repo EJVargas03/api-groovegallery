@@ -11,15 +11,16 @@ export const getPlaylist = (id) => {
 export const createPlaylist = (playlist) => {
     const id = uuid()
     playlists.push({ id, ...playlist})
+    return getPlaylist(id)
 }
 
 export const updatePlaylist = (id, playlist) => {
-    const dbPlaylist = getPlaylist(id)
-    if (dbPlaylist) {
+    const databasePlaylist = getPlaylist(id)
+    if (databasePlaylist) {
         const playlistIndex = playlists.findIndex((p) => p.id === id)
         playlists[playlistIndex] = { id, ...playlist}
     }
-    return {id, ...playlist}
+    return getPlaylist(id)
 }
 
 export const deletePlaylist = (id) => {
