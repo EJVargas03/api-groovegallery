@@ -2,11 +2,11 @@ import db from '../utils/db'
 
 export const getSongs = async (skip, take) => {
   const count = await db.songs.count()
-  const characters = await db.songs.findMany({
+  const songs = await db.songs.findMany({
     skip,
     take,
   })
-  return { count, characters }
+  return { count, songs }
 }
 
 export const getSong = async (id) =>
