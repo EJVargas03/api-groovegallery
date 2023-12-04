@@ -1,30 +1,30 @@
 import db from '../utils/db'
 
 export const getSongs = async (skip, take) => {
-  const count = await db.song.count()
-  const songs = await db.song.findMany({
+  const count = await db.songs.count()
+  const characters = await db.songs.findMany({
     skip,
     take,
   })
-  return { count, songs }
+  return { count, characters }
 }
 
 export const getSong = async (id) =>
-  db.song.findUnique({ where: { songId: id } })
+  db.songs.findUnique({ where: { songId: id } })
 
 export const addSong = async (songData) =>
-  db.song.create({ data: { ...songData } })
+  db.songs.create({ data: { ...songData } })
 
 export const updateSong = async (id, songData) => {
-  const song = await getSong(id)
-  if (song) {
-    return db.song.update({
+  const songs = await getSong(id)
+  if (songs) {
+    return db.songs.update({
       where: { songId: id },
-      data: { ...song, ...songData, updatedAt: new Date() },
+      data: { ...songs, ...songData, updatedAt: new Date() },
     })
   }
   return null
 }
 
 export const deleteSong = async (id) =>
-  db.song.delete({ where: { songId: id } })
+  db.songs.delete({ where: { songId: id } })
