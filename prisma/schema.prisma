@@ -10,20 +10,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Playlist {
-  playlistId    String       @id @default(uuid())
-  name          String
-  songs         Song[]
-  image         String
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
-}
-
-model Song {
+model Songs {
   songId        String       @id @default(uuid())
   name          String
-  playlistId    String
-  playlist      Playlist     @relation(fields: [playlistId], references: [playlistId])
   image         String
   artist        String
   title         String
