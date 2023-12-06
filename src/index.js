@@ -17,7 +17,7 @@ const app = express()
 
 app.use(
   basicAuth({
-  users: {[process.env.ADMIN_USER]: process.env.ADMIN_PASSWORD},
+  users: {[process.env.ADMIN_USERNAME]: process.env.ADMIN_PASSWORD},
   }),
 )
 app.use(morgan(process.env.MORGAN_LOG))
